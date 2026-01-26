@@ -6,22 +6,38 @@ export default function Home() {
   const [idea, setIdea] = useState("");
   const [response, setResponse] = useState<string | null>(null);
 
-  const handleGenerate = () => {
-    setResponse(`
-App Summary:
-An app based on your idea: "${idea}"
-
-Key Features:
-• User authentication
-• Simple dashboard
-• Core feature related to your idea
-
-Suggested Tech Stack:
-• Frontend: Next.js
-• Backend: Node.js
-• Database: Supabase
-`);
+  const handleGenerate = async () => {
+    setResponse("Thinking...");
+  
+    const res = await fetch("/api/forge", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idea }),
+    });
+  
+    const data = await res.json();
+  
+    const formattedResponse = `
+  App Summary:
+  ${data.summary}
+  
+  Key Features:
+  ${data.features.map((f: string) => `• ${f}`).join("\n")}
+  
+  Tech Stack:
+  • Frontend: ${data.techStack.frontend}
+  • Backend: ${data.techStack.backend}
+  • Database: ${data.techStack.database}
+  
+  Next Steps:
+  ${data.nextSteps.map((s: string) => `• ${s}`).join("\n")}
+  `;
+  
+    setResponse(formattedResponse);
   };
+  
 
   return (
     <main className="min-h-screen bg-gray-100 flex flex-col items-center p-10">
