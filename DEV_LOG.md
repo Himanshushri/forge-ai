@@ -36,3 +36,9 @@ Notes:
 - Enabled multiple projects to be created in a single session
 - Implemented project switching to restore previous plans
 - Forge now behaves like a workspace instead of a one-shot generator
+
+## Day 6
+- Added iteration loop to refine existing Forge projects
+- Enabled instruction-based modification of project plans
+- Preserved project context during iterations
+- Forge now supports conversational and evolutionary workflows
