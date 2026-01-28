@@ -29,3 +29,10 @@ Notes:
 - Dynamically adjusted features based on detected context
 - Fixed API route structure issue and stabilized backend
 - Forge now adapts plans intelligently without external AI APIs
+
+## Day 5
+- Introduced Forge Project as a first-class concept
+- Added in-memory project storage using React state
+- Enabled multiple projects to be created in a single session
+- Implemented project switching to restore previous plans
+- Forge now behaves like a workspace instead of a one-shot generator
